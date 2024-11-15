@@ -1,0 +1,20 @@
+﻿@model List<Unicam.Libreria.Core.Entities.Libro>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Titolo</th>
+            <th>Autore</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var libro in Model)
+        {
+            <tr>
+                <td>@libro.Titolo</td>
+                <td>@libro.Autore.Cognome @libro.Autore.Nome</td>
+            </tr>
+        }
+    </tbody>
+</table>
