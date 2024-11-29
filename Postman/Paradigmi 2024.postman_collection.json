@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "21d04004-9d70-4b74-b3c2-769c48b45055",
+		"name": "Paradigmi 2024",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "694158"
+	},
+	"item": [
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "4ff6e4cd-5ed8-48eb-ad42-bde5bae6d210",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "C0O8Q~TzTfq5Ker0GpcOGqZnAgjHiL7pXSUibaFY",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "1.AU4Afgl0uUdTNUGOVpp4KDoT8c3k9k_YXutIrUK95brm0hCDAE1OAA.AgABAwEAAADW6jl31mB3T7ugrWTT8pFeAwDs_wUA9P8gpwS859De1Uq2nb-BVOJ9lRdWGRL_y6IaSEbWlWoUqIQZN4iSPf7X3hfhVSg0JlfjYyN02jMz5AlGJDVQoHZW-QoUXaxiKt6NhYEVVSdK06ZJ5yFtynxgaybVwtAH2CtroBdqviQhiU_aH1nfbOueAiKjtfXlFlUcyuby3AH5jlcnC3Jd0Uh0Dc80NDyiKavCHMuej1md_0ZCH0Hi6Jog0UakLXuFIdzAy0RjxOmSBNEfWDQKfvCttiV1eg3QGBNLJ-qWP5JQrMCR6kqxFuhRFBOLv2mbgqctwMXS_oP8s4S0GRr-KrITq0RFJZ1dV16pThyfS5pOjJ16oUxhmpFTAZxOaA_uLW3_FLLPeCjZiQ0a3gdXsMeahEk1RfWUZXT2fY0wJ4Bj-90Vyd9-RA3JXDKJBl5oe5oKixwLkszspU2iyPI8KEgMIuAxyVe8kvSy_v_Apbrv0K72IV9Iou6UfFDoa5z8O76B-ZyzQVoXj9BXVe7dD6yp6IHGXPUTK-B3PE3zC-D7mt9ydiD5itcloMNJ4kcSCFP0NdPiO9iQizLUulngQySzC1sx3TXLB-dBShiDj4YvDS9QXauGsMlbQJ5_2zi5zWWXclmbWmM4Sba_mxwGrCEjIJnUwbatj5-AZfwYv3azhK8o8LEniHZvJBzYf8tCfTabmjS74U4scJ1j9-4z4vpbOivqLn7Nijw7-pxHWLsm9ZZNb1whGD_cru5hQ74mMnq_qpxBL2lNsQ2ZcTVZtWZAaJ_DQ8Qnt6q4C2gymK1plg3C_9jgg06QFoKisbmrKosHLvzhEfzi4AFQ2EisQ6yyKEWf66pH0UrzVeA4ooqAol_hb7Arge7v9Y-lDD4x4TcvnlsjCBEh5CuzblkX2FDf1pJ36-YTj9C5vgt9re3pOB0VldBifaXYkXF0-gBVVBhGK9d3p0xFHIfuCozkGBnFs7QQzAPFdovfnsNi0dy7w3AMHLMjwV2XtOq0cg",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://login.microsoftonline.com/b974097e-5347-4135-8e56-9a78283a13f1/oauth2/v2.0/token",
+					"protocol": "https",
+					"host": [
+						"login",
+						"microsoftonline",
+						"com"
+					],
+					"path": [
+						"b974097e-5347-4135-8e56-9a78283a13f1",
+						"oauth2",
+						"v2.0",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Client Credentials",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Send Email With Microsoft Graph",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJub25jZSI6IjJKLWlVNHEtejdaMnQyMGt1X0lZMnMwbWpQUXJJY3Z4ZUxmWXJzTHdWWHMiLCJhbGciOiJSUzI1NiIsIng1dCI6Inp4ZWcyV09OcFRrd041R21lWWN1VGR0QzZKMCIsImtpZCI6Inp4ZWcyV09OcFRrd041R21lWWN1VGR0QzZKMCJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9iOTc0MDk3ZS01MzQ3LTQxMzUtOGU1Ni05YTc4MjgzYTEzZjEvIiwiaWF0IjoxNzMyODc4NTExLCJuYmYiOjE3MzI4Nzg1MTEsImV4cCI6MTczMjg4MjQxMSwiYWlvIjoiazJCZ1lIQzcrb3h6cnJsYmY1eFUxZmtVMFl2WkFBPT0iLCJhcHBfZGlzcGxheW5hbWUiOiJMb2dpbiBBcHBsaWNhemlvbmUgTGlicmVyaWEgVW5pY2FtIFBhcmFkaWdtaSIsImFwcGlkIjoiNGZmNmU0Y2QtNWVkOC00OGViLWFkNDItYmRlNWJhZTZkMjEwIiwiYXBwaWRhY3IiOiIxIiwiaWRwIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvYjk3NDA5N2UtNTM0Ny00MTM1LThlNTYtOWE3ODI4M2ExM2YxLyIsImlkdHlwIjoiYXBwIiwib2lkIjoiNWYxM2I2ZjQtMDJjMC00YTQ5LTlmNjgtMTE5OGRmNGY1ZGNmIiwicmgiOiIxLkFVNEFmZ2wwdVVkVE5VR09WcHA0S0RvVDhRTUFBQUFBQUFBQXdBQUFBQUFBQUFDREFBQk9BQS4iLCJyb2xlcyI6WyJNYWlsLlNlbmQiXSwic3ViIjoiNWYxM2I2ZjQtMDJjMC00YTQ5LTlmNjgtMTE5OGRmNGY1ZGNmIiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkVVIiwidGlkIjoiYjk3NDA5N2UtNTM0Ny00MTM1LThlNTYtOWE3ODI4M2ExM2YxIiwidXRpIjoiaUxDeU9WeDQwRUd6cHh5cjhvZjVBQSIsInZlciI6IjEuMCIsIndpZHMiOlsiMDk5N2ExZDAtMGQxZC00YWNiLWI0MDgtZDVjYTczMTIxZTkwIl0sInhtc19pZHJlbCI6IjcgMTIiLCJ4bXNfdGNkdCI6MTY3MTEyNzk0NCwieG1zX3RkYnIiOiJFVSJ9.kygFjqRvntfVG1j1y6tl91uYEOJukcnKtXEfGN6avOrc_X74J73_cioqGKXYSo70R0Pr1X8aPgC5Ks_AkKtBtSatoTWIAzmVjd13VXyRAD6YFaRmgi0WsnbmDbhK8ka6tWkNEXS6FcPCVQvXzxP4Fjmy_yeC5ngRYlRZ2k0gFJ5CY_asZ9r0CWqEGymJPKPfWT3MD9O2_14y-Yc-bp7nv0jb8zSGv2dabA7QVf-PNa49pk_xEouoBfd1VHShit7T0_5HFYtvgiu__ZxtX8__Pzj2zwZrvQ_c4_ccfu94ACw53WH003grFKvnUD9yyFGodHJhLysPihP9XOwJfTpJ6g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"message\" : { \r\n        \"subject\": \"Invio email con graph\", \r\n        \"body\" : { \r\n            \"contentType\": \"html\", \r\n            \"content\": \"Prova invio\" \r\n        }, \r\n        \"toRecipients\": [ \r\n            { \r\n                \"emailAddress\" : { \r\n                    \"address\" : \"f.paoloni@bitonline.it\"\r\n                } \r\n            }\r\n        ] ,\r\n        \"ccRecipients\": [ \r\n           \r\n        ] ,\r\n        \"bccRecipients\": [ \r\n           \r\n        ] \r\n    } \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://graph.microsoft.com/v1.0/users/AdeleV@0q1c6.onmicrosoft.com/sendMail",
+					"protocol": "https",
+					"host": [
+						"graph",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"v1.0",
+						"users",
+						"AdeleV@0q1c6.onmicrosoft.com",
+						"sendMail"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
