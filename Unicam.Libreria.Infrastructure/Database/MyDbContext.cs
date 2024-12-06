@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unicam.Libreria.Application.Abstractions.Context;
 using Unicam.Libreria.Core.Entities;
 using Unicam.Libreria.Infrastructure.Database.Configurations;
 
 namespace Unicam.Libreria.Infrastructure.Database
 {
-    public class MyDbContext : DbContext
+    public class MyDbContext : DbContext, IMyDbContext
     {
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {

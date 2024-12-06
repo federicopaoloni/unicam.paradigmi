@@ -1,47 +1,27 @@
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.EntityFrameworkCore;
+
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Security.Claims;
+using Unicam.Libreria.Application.Abstractions.Context;
+using Unicam.Libreria.Application.Abstractions.Email;
+using Unicam.Libreria.Application.Options;
 using Unicam.Libreria.Infrastructure.Database;
+using Unicam.Libreria.Infrastructure.Emails;
+using Unicam.Libreria.Web.Extensions;
+using Unicam.Libreria.Application.Extensions;
+using Unicam.Libreria.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string connectionString = "Data Source=LOCALHOST;User Id=libreria_user;Password=libreria_user;Trust Server Certificate=true";
+//Per leggere una configurazione secca
+//var clientIdFromConfig = builder.Configuration.GetValue<string>("AzureAd:ClientId");
 
-builder.Services.AddDbContext<MyDbContext>(opt =>
-{
-    //opt.UseLazyLoadingProxies();
-    opt.UseSqlServer(connectionString);
-});
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
-builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(opt =>
-    {
-        opt.ClientId = "4ff6e4cd-5ed8-48eb-ad42-bde5bae6d210";
-        opt.TenantId = "b974097e-5347-4135-8e56-9a78283a13f1";
-        opt.Instance = "https://login.microsoftonline.com/";
-        opt.CallbackPath = "/signin-oidc";
-        opt.Domain = "0q1c6.onmicrosoft.com";
-        opt.SaveTokens = true;
-        opt.UsePkce = true;
-        opt.Scope.Add("offline_access");
-        opt.ClientSecret = "C0O8Q~TzTfq5Ker0GpcOGqZnAgjHiL7pXSUibaFY";
-        opt.ResponseType = OpenIdConnectResponseType.Code;
-
-        opt.Events.OnTokenValidated = async (ctx) =>
-        {
-            if (ctx.Principal != null)
-            {
-                var identity = ctx.Principal.Identity as ClaimsIdentity;
-                //TODO : Leggo dal database il ruolo dell'utente
-                identity!.AddClaim(new Claim("Ruolo", "Admin"));
-            }
-        };
-    });
+builder.Services
+        .AddUiServices(builder.Configuration)
+        .AddApplicationServices()
+        .AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -86,5 +66,7 @@ app.Map("/LibriNoHandling", (config) =>
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllers();
 
 app.Run();

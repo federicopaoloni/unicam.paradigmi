@@ -1,26 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Unicam.Libreria.Infrastructure.Database;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Unicam.Libreria.Web.Controllers
 {
-    public class LibriController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
+    public class LibriController : ControllerBase
     {
-        private readonly MyDbContext _context;
-        public LibriController(MyDbContext context)
-        {
-            _context = context;
-        }
-        public IActionResult Index()
-        {
-            //TODO : Caricare tutti i libri presenti nel database
-            //TODO : passare i libri alla view in modo da renderizzarli
-            var libri = _context.Libri
-                .Include(x=>x.Autore)
-                .ToList();
-            
 
-            return View(libri);
+        [HttpGet]
+        [Route("index")]
+        public async Task<IActionResult> Index()
+        {
+            return Ok(new { Method = "get" });
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            return Ok(new { Id = id });
+        }
+
+        [HttpPost]
+        [Route("add")]
+        public async Task<IActionResult> Add()
+        {
+            return Ok(new { Action = "Add" });
         }
     }
 }
