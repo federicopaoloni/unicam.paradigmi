@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Logging;
@@ -58,7 +59,7 @@ namespace Unicam.Libreria.Web.Extensions
                         ValidateAudience = true
                     };
                 });
-
+            /*
             services.AddAuthentication("MyJwtToken")
                .AddJwtBearer(opt =>
                {
@@ -67,7 +68,10 @@ namespace Unicam.Libreria.Web.Extensions
                    {
                        
                    };
-               });
+               });*/
+
+            services.AddFluentValidationAutoValidation();
+            
             return services;
         }
     }

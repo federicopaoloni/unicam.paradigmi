@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using Unicam.Libreria.Application.Models.Requests;
+using Unicam.Libreria.Core.Entities;
 
 namespace Unicam.Libreria.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
     public class LibriController : ControllerBase
     {
 
@@ -28,7 +30,7 @@ namespace Unicam.Libreria.Web.Controllers
 
         [HttpPost]
         [Route("add")]
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add(AddLibroRequest request)
         {
             return Ok(new { Action = "Add" });
         }
