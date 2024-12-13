@@ -25,6 +25,9 @@ namespace Unicam.Libreria.Web.Controllers
         }
         [HttpGet]
         [Route("index")]
+        [ProducesResponseType<BaseResponse<List<LibroDto>>>(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType<BaseResponse<string>>(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Index()
         {
             var result= await _libroService.GetLibriAsync();

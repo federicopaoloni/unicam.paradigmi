@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.OpenApi.Models;
+using System.Configuration;
 using System.Security.Claims;
 using System.Security.Policy;
 using Unicam.Libreria.Application.Options;
@@ -16,6 +18,31 @@ namespace Unicam.Libreria.Web.Extensions
             ,IConfiguration config)
         {
 
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Unicam Libreria Api",
+                    Version = "v1"
+                });
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        Implicit = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri("https://login.microsoftonline.com/b974097e-5347-4135-8e56-9a78283a13f1/oauth2/v2.0/authorize"),
+                            TokenUrl = new Uri("https://login.microsoftonline.com/b974097e-5347-4135-8e56-9a78283a13f1/oauth2/v2.0/token"),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { "api://4ff6e4cd-5ed8-48eb-ad42-bde5bae6d210/.default", "Can access web api" }
+                            }
+                        }
+                    }
+                });
+            });
             services.AddControllersWithViews();
             services.Configure<AzureADOption>(config.GetSection(AzureADOption.SECTION_NAME));
 

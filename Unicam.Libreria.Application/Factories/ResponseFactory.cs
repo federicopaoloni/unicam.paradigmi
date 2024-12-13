@@ -26,5 +26,10 @@ namespace Unicam.Libreria.Application.Factories
                 Errors = new List<string>() { msg}
             };
         }
+
+        public static BaseResponse<string> WithError(Exception ex)
+        {
+            return WithError<string>(ex.Message);
+        }
     }
 }
