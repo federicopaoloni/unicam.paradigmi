@@ -8,9 +8,9 @@ using Unicam.Libreria.Application.Models.Requests;
 
 namespace Unicam.Libreria.Application.Validators
 {
-    public class AddLibroRequestValidator : AbstractValidator<AddLibroRequest>
+    public class EditLibroRequestValidator : AbstractValidator<EditLibroRequest>
     {
-        public AddLibroRequestValidator()
+        public EditLibroRequestValidator()
         {
             RuleFor(x => x.Isbn)
                 .NotEmpty()
@@ -30,12 +30,13 @@ namespace Unicam.Libreria.Application.Validators
                .NotNull()
                .WithMessage("Il campo descrizione non può essere nullo");
 
+            
+
             RuleFor(x => x.IdAutore)
-             .SetValidator(new CheckAutoreValidator<AddLibroRequest>());
-             
+                .SetValidator(new CheckAutoreValidator<EditLibroRequest>());
 
         }
 
-      
+     
     }
 }

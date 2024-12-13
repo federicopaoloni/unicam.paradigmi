@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unicam.Libreria.Application.Abstractions.Services;
+using Unicam.Libreria.Application.Services;
 using Unicam.Libreria.Application.Validators;
 
 namespace Unicam.Libreria.Application.Extensions
@@ -15,6 +17,7 @@ namespace Unicam.Libreria.Application.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddValidatorsFromAssemblyContaining(typeof(ServiceCollectionExtensions));
+            services.AddTransient<ILibroService, FakeLibroService>();
             return services;
         }
     }
