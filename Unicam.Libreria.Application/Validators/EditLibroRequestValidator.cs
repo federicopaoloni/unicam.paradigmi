@@ -1,17 +1,21 @@
 ﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unicam.Libreria.Application.Abstractions.Context;
 using Unicam.Libreria.Application.Models.Requests;
 
 namespace Unicam.Libreria.Application.Validators
 {
     public class EditLibroRequestValidator : AbstractValidator<EditLibroRequest>
     {
-        public EditLibroRequestValidator()
+        private readonly IMyDbContext _context;
+        public EditLibroRequestValidator(IMyDbContext context)
         {
+            _context = context;
             RuleFor(x => x.Isbn)
                 .NotEmpty()
                 .WithMessage("Il campo isbn è obbligatorio")
@@ -33,7 +37,9 @@ namespace Unicam.Libreria.Application.Validators
             
 
             RuleFor(x => x.IdAutore)
-                .SetValidator(new CheckAutoreValidator<EditLibroRequest>());
+                .SetValidator(new ValidateAutoreExistence<EditLibroRequest>());
+            RuleFor(x => x.Isbn)
+             .SetValidator(new IsbnUniqueValidator<EditLibroRequest>(_context,IsbnUniqueValidatorMode.ALLOW_IN_THE_SAME_ENTITY));
 
         }
 

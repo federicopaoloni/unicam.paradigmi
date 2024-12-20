@@ -23,8 +23,8 @@ namespace Unicam.Libreria.Infrastructure.Extensions
                 opt.UseSqlServer(config.GetConnectionString("MyDbContext"));
             });
 
-            services.AddTransient<IEmailService, EmailService>();
-            services.AddTransient<IMyDbContext, MyDbContext>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IMyDbContext, MyDbContext>();
             return services;
         }
     }

@@ -16,8 +16,22 @@ using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 using Unicam.Libreria.Application.Factories;
 using Unicam.Libreria.Application.Models.Responses;
+using Serilog;
+using Microsoft.Extensions.Hosting;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+               Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("C:\\Unicam\\Unicam.Paradigmi\\Unicam.Libreria.Web\\bin\\Debug\\net8.0\\log.txt", rollingInterval: RollingInterval.Day,
+    retainedFileCountLimit: 7
+    )
+    // set default minimum level
+    .MinimumLevel.Information()
+    .CreateBootstrapLogger();
+
+builder.Host.UseSerilog();
 
 //Per leggere una configurazione secca
 //var clientIdFromConfig = builder.Configuration.GetValue<string>("AzureAd:ClientId");
@@ -31,7 +45,11 @@ var app = builder.Build();
 
 
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(opt =>
+{
+    opt.OAuthClientId("4ff6e4cd-5ed8-48eb-ad42-bde5bae6d210");
+    opt.OAuthUsePkce();
+});
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -50,8 +68,13 @@ app.UseExceptionHandler(appError =>
         var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
         if (contextFeature != null)
         {
+            Exception errorToRet = contextFeature.Error;
+            if (contextFeature.Error is Microsoft.EntityFrameworkCore.DbUpdateException dbEx)
+            {
+                errorToRet = dbEx.InnerException ?? dbEx;
+            }
             var res = ResponseFactory
-                .WithError(contextFeature.Error);
+                .WithError(errorToRet);
             await context.Response.WriteAsJsonAsync(
                 res
                 );

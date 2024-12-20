@@ -16,6 +16,8 @@ namespace Unicam.Libreria.Application.Abstractions.Services
         Task<Libro> EditLibroAsync(EditLibroRequest request);
 
         Task DeleteLibroAsync(DeleteLibroRequest request);
+
+        
         
     }
 }

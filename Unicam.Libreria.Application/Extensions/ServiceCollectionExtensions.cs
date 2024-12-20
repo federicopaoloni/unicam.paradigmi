@@ -17,7 +17,8 @@ namespace Unicam.Libreria.Application.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddValidatorsFromAssemblyContaining(typeof(ServiceCollectionExtensions));
-            services.AddTransient<ILibroService, FakeLibroService>();
+            services.AddScoped<ILibroService, LibroService>();
+            services.AddScoped<IUtentiService, UtentiService>();
             return services;
         }
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Unicam.Libreria.Application.Validators
 {
-    public class CheckAutoreValidator<T> : PropertyValidator<T, int>
+    public class ValidateAutoreExistence<T> : PropertyValidator<T, int>
     {
         public override string Name => "CheckAutoreValidator";
 

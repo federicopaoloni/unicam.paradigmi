@@ -19,6 +19,8 @@ namespace Unicam.Libreria.Infrastructure.Database
         public virtual DbSet<Autore> Autori { get; set; }
         public virtual DbSet<Libro> Libri { get;set; }
         public virtual DbSet<Categoria> Categorie { get; set; }
+        public virtual DbSet<Utente> Utenti { get; set; }
+        public virtual DbSet<Ruolo> Ruoli { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
